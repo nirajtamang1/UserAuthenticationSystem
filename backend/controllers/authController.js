@@ -56,20 +56,20 @@ export const loginController = async (req, res) => {
     //Validation
     if (!email || !password) {
       return res
-        .status(400)
+        .status(500)
         .send({ message: "Please enter email and password." });
     }
     const user = await userModel.findOne({ email });
 
     if (!user) {
-      return res.status(400).send({
+      return res.status(500).send({
         success: false,
         message: "Invalid Email",
       });
     }
     const match = await comparePassword(password, user.password);
     if (!match) {
-      return res.status(400).send({
+      return res.status(500).send({
         success: false,
         message: "Invalid Password",
       });
