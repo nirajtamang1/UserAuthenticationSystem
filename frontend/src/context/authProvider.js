@@ -41,6 +41,7 @@ function AuthProvider({ children }) {
           headers: { Authorization: `Bearer ${res.data.token}` },
         }
       );
+
       setUser(userProfile?.data?.user);
     }
   };
@@ -49,8 +50,24 @@ function AuthProvider({ children }) {
     setUser(null);
   };
 
+  const updateProfile = async (userData) => {
+    try {
+      const token = localStorage.getItem("token");
+      const res = await axios.put(
+        `${process.env.REACT_APP_API_URL}/api/auth/profile`,
+        userData,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      setUser(res?.data?.updatedUser);
+      console.log("Profile updated successfully", res.data.user);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout, updateProfile }}>
       {children}
     </AuthContext.Provider>
   );

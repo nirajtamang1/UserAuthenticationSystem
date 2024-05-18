@@ -1,6 +1,7 @@
 import React from "react";
 import { useAuth } from "../context/authProvider";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Profile() {
   const { user, logout } = useAuth();
@@ -19,7 +20,7 @@ function Profile() {
         <p>Phone: {user?.phone}</p>
         <p>Email: {user?.email}</p>
       </div>
-      <button className="btn btn-primary">Edit</button>
+      <Link to="/updateProfile">Edit</Link>
       <button className="btn btn-danger">Delete</button>
       <button className="btn btn-secondary" onClick={handleLogout}>
         LogOut

@@ -121,10 +121,11 @@ export const updateProfileController = async (req, res) => {
     );
     res.status(200).send({
       success: true,
-      message: "Update User Successfully",
+      message: "Update User Profile Successfully",
       updatedUser,
     });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
+
