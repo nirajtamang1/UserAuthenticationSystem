@@ -129,3 +129,15 @@ export const updateProfileController = async (req, res) => {
   }
 };
 
+export const deleteProfileController = async (req, res) => {
+  try {
+    const userId = req.userId;
+    await userModel.deleteOne({ _id: userId });
+    res.status(201).json({
+      success: true,
+      message: "Delete Successfully",
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
