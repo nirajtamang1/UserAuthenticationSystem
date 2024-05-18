@@ -4,23 +4,53 @@ import axios from "axios";
 const AuthContext = createContext();
 
 function AuthProvider({ children }) {
-  const [auth, setAuth] = useState({ user: null, token: "" });
-  
-  axios.defaults.headers.common["Authorization"] = auth?.token;
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const data = localStorage.getItem("auth");
-    if (data) {
-      const parseData = JSON.parse(data);
-      setAuth({
-        ...auth,
-        user: parseData.user,
-        token: parseData.token,
-      });
+    async function fetchData() {
+      const token = localStorage.getItem("token");
+      if (token) {
+        try {
+          const res = await axios.get(
+            `${process.env.REACT_APP_API_URL}/api/auth/profile`,
+            { headers: { Authorization: `Bearer ${token}` } }
+          );
+          setUser(res?.data?.user);
+        } catch (error) {
+          console.log("Error while getting User Profile", error);
+          localStorage.removeItem("token");
+        }
+      }
     }
+    fetchData();
   }, []);
+
+  const login = async (email, password) => {
+    const res = await axios.post(
+      `${process.env.REACT_APP_API_URL}/api/auth/login`,
+      {
+        email,
+        password,
+      }
+    );
+    if (res.data.success) {
+      localStorage.setItem("token", res.data.token);
+      const userProfile = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/auth/profile`,
+        {
+          headers: { Authorization: `Bearer ${res.data.token}` },
+        }
+      );
+      setUser(userProfile?.data?.user);
+    }
+  };
+  const logout = () => {
+    localStorage.removeItem("token");
+    setUser(null);
+  };
+
   return (
-    <AuthContext.Provider value={[auth, setAuth]}>
+    <AuthContext.Provider value={{ user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

@@ -46,7 +46,7 @@ export const signUpController = async (req, res) => {
       user,
     });
   } catch (error) {
-    console.log(error);
+    res.status(500).json({ error: error.message });
   }
 };
 
@@ -81,15 +81,50 @@ export const loginController = async (req, res) => {
     res.status(200).send({
       success: true,
       message: "User Login successfully",
-      user: {
-        name: user.name,
-        phone: user.phone,
-        email: user.email,
-        role: user.role,
-      },
       token,
     });
   } catch (error) {
-    console.log(error);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+export const getProfileController = async (req, res) => {
+  try {
+    const userId = req.userId;
+    const user = await userModel.findById(userId).select("-password");
+
+    res.status(200).send({
+      success: true,
+      message: "Get User Profile Successfully",
+      user,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+export const updateProfileController = async (req, res) => {
+  try {
+    const userId = req.userId;
+    const { name, phone, email, password } = req.body;
+    const user = await userModel.findById(userId);
+    const hashedPassword = password ? await hashPassword(password) : undefined;
+    const updatedUser = await userModel.findByIdAndUpdate(
+      userId,
+      {
+        name: name || user.name,
+        phone: phone || user.phone,
+        email: email || user.email,
+        password: hashedPassword || user.password,
+      },
+      { new: true }
+    );
+    res.status(200).send({
+      success: true,
+      message: "Update User Successfully",
+      updatedUser,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 };

@@ -1,13 +1,29 @@
 import React from "react";
 import { useAuth } from "../context/authProvider";
+import { useNavigate } from "react-router-dom";
 
 function Profile() {
-  const [auth] = useAuth();
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
 
   return (
     <div>
       <h1>Profile</h1>
-      <h1>{auth?.user?.name}</h1>
+      <div>
+        <p>Username: {user?.name}</p>
+        <p>Phone: {user?.phone}</p>
+        <p>Email: {user?.email}</p>
+      </div>
+      <button className="btn btn-primary">Edit</button>
+      <button className="btn btn-danger">Delete</button>
+      <button className="btn btn-secondary" onClick={handleLogout}>
+        LogOut
+      </button>
     </div>
   );
 }
