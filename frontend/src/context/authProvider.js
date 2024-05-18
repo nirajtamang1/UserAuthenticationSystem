@@ -66,8 +66,24 @@ function AuthProvider({ children }) {
     }
   };
 
+  const deleteProfile = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/auth/profile`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      localStorage.removeItem("token");
+      setUser(null);
+      console.log("Delete Profile successfully");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ user, login, logout, updateProfile }}>
+    <AuthContext.Provider
+      value={{ user, login, logout, updateProfile, deleteProfile }}
+    >
       {children}
     </AuthContext.Provider>
   );

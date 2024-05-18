@@ -4,14 +4,17 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 function Profile() {
-  const { user, logout } = useAuth();
+  const { user, logout, deleteProfile } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
     navigate("/");
   };
-
+  const handleDelete = () => {
+    deleteProfile();
+    navigate("/");
+  };
   return (
     <div>
       <h1>Profile</h1>
@@ -21,7 +24,9 @@ function Profile() {
         <p>Email: {user?.email}</p>
       </div>
       <Link to="/updateProfile">Edit</Link>
-      <button className="btn btn-danger">Delete</button>
+      <button className="btn btn-danger" onClick={handleDelete}>
+        Delete
+      </button>
       <button className="btn btn-secondary" onClick={handleLogout}>
         LogOut
       </button>
