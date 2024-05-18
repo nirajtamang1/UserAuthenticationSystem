@@ -1,0 +1,74 @@
+/* header  */
+.header {
+  background-color: rgb(246, 233, 218) !important;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header a {
+  margin: 10px;
+  color: rgb(202, 143, 143) !important;
+  font-size: 1.5rem;
+  border: 2px solid rgb(246, 233, 218) !important;
+  padding: 10px 20px;
+}
+
+/* Welcome page  */
+.background {
+  background-image: url(./images/backgroundImage.jpg);
+  background-size: cover;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+.info h1 {
+  font-size: 3rem;
+}
+.info p {
+  font-size: 1.5rem;
+}
+.background a {
+  margin: 10px;
+  color: white !important;
+  font-size: 1.1rem;
+  border: 2px solid white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: 0.5s;
+}
+
+a:hover {
+  background-color: white;
+  color: black !important;
+}
+
+/* Login page  or Sign up page*/
+.form-container {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}

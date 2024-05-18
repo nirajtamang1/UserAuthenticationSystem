@@ -1,7 +1,7 @@
 import React from "react";
 import { useAuth } from "../context/authProvider";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import Layout from "./Layout/Layout";
 
 function Profile() {
   const { user, logout, deleteProfile } = useAuth();
@@ -12,25 +12,43 @@ function Profile() {
     navigate("/");
   };
   const handleDelete = () => {
-    deleteProfile();
-    navigate("/");
+    const conform = window.confirm("Are you sure to delete your account");
+    if (conform) {
+      deleteProfile();
+      navigate("/");
+    }
+  };
+  const updatePage = () => {
+    navigate("/updateProfile");
   };
   return (
-    <div>
-      <h1>Profile</h1>
-      <div>
-        <p>Username: {user?.name}</p>
-        <p>Phone: {user?.phone}</p>
-        <p>Email: {user?.email}</p>
+    <Layout>
+      <div className="background">
+        <div className="form-container">
+          <h1 className="mb-3">Profile</h1>
+          {user ? (
+            <div>
+              <div>
+                <p>Username: {user?.name}</p>
+                <p>Phone: {user?.phone}</p>
+                <p>Email: {user?.email}</p>
+              </div>
+              <button onClick={updatePage} className="btn btn-primary mx-1">
+                Edit
+              </button>
+              <button className="btn btn-danger mx-1" onClick={handleDelete}>
+                Delete
+              </button>
+              <button className="btn btn-secondary" onClick={handleLogout}>
+                LogOut
+              </button>
+            </div>
+          ) : (
+            <p>Please Login...</p>
+          )}
+        </div>
       </div>
-      <Link to="/updateProfile">Edit</Link>
-      <button className="btn btn-danger" onClick={handleDelete}>
-        Delete
-      </button>
-      <button className="btn btn-secondary" onClick={handleLogout}>
-        LogOut
-      </button>
-    </div>
+    </Layout>
   );
 }
 
