@@ -11,7 +11,7 @@ Admin(id)
 
 •	password: 12345678
 
-Note: First open the backend URL after some second open frontend URL so that the application will run smoothly.
+Note: First open the backend URL after backend URL open completely open frontend URL so that the application will run smoothly.
 
 
 **Project Structure:** 
