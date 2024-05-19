@@ -1,6 +1,21 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-color: rgb(246, 233, 218);
+  --list-text-color: rgb(202, 143, 143);
+  --border-bg-color: rgb(246, 233, 218);
+  --text-color-white: white;
+  --text-color-black: black;
+  --btn-bg-blue: #007bff;
+}
+
 /* header  */
 .header {
-  background-color: rgb(246, 233, 218) !important;
+  background-color: var(--bg-color) !important;
   height: 10vh;
   display: flex;
   justify-content: center;
@@ -8,9 +23,9 @@
 }
 .header a {
   margin: 10px;
-  color: rgb(202, 143, 143) !important;
+  color: var(--list-text-color) !important;
   font-size: 1.5rem;
-  border: 2px solid rgb(246, 233, 218) !important;
+  border: 2px solid var(--border-bg-color) !important;
   padding: 10px 20px;
 }
 
@@ -23,7 +38,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: var(--text-color-white);
   text-align: center;
   padding: 0 20px;
   box-sizing: border-box;
@@ -36,17 +51,17 @@
 }
 .background a {
   margin: 10px;
-  color: white !important;
+  color: var(--text-color-white) !important;
   font-size: 1.1rem;
-  border: 2px solid white;
+  border: 2px solid var(--text-color-white);
   padding: 10px 20px;
   border-radius: 5px;
   transition: 0.5s;
 }
 
 a:hover {
-  background-color: white;
-  color: black !important;
+  background-color: var(--text-color-white);
+  color: var(--text-color-black) !important;
 }
 
 /* All pages */
@@ -62,15 +77,15 @@ a:hover {
 .button {
   width: 100%;
   padding: 10px;
-  background-color: #007bff;
-  color: white;
+  background-color: var(--btn-bg-blue);
+  color: var(--text-color-white);
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .button:hover {
-  background-color: #0056b3;
+  background-color: var(--btn-bg-blue);
 }
 .table-container {
   background: rgba(0, 0, 0, 0.7);

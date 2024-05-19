@@ -4,7 +4,7 @@ import axios from "axios";
 import Layout from "../Layout/Layout";
 import { toast } from "react-toastify";
 
-function Signup() {
+const Signup = () => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -25,7 +25,7 @@ function Signup() {
           confirmPassword,
         }
       );
-
+     
       if (res.data.success) {
         toast.success(res.data.message);
         navigate("/");
@@ -116,6 +116,6 @@ function Signup() {
       </Layout>
     </>
   );
-}
+};
 
 export default Signup;

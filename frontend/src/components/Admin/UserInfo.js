@@ -3,7 +3,7 @@ import Layout from "../Layout/Layout";
 import { toast } from "react-toastify";
 import axios from "axios";
 
-function UserInfo() {
+const UserInfo = () => {
   const [users, setUsers] = useState([]);
   const getAllUsers = async () => {
     try {

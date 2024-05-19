@@ -4,7 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-function ForgetPassword() {
+const ForgetPassword = () => {
   const [email, setEmail] = useState();
   const navigate = useNavigate();
 

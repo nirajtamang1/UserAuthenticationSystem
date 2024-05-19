@@ -4,7 +4,7 @@ import { useAuth } from "../../context/authProvider";
 import { toast } from "react-toastify";
 import Layout from "../Layout/Layout";
 
-function Login() {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login } = useAuth();
@@ -23,7 +23,7 @@ function Login() {
 
   return (
     <>
-      <Layout  title="User Authentication System - Login">
+      <Layout title="User Authentication System - Login">
         <div className="background">
           <div className="form-container">
             <h2>Login</h2>
@@ -66,6 +66,6 @@ function Login() {
       </Layout>
     </>
   );
-}
+};
 
 export default Login;

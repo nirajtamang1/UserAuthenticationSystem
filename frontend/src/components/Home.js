@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Layout from "./Layout/Layout";
 import { useAuth } from "../context/authProvider";
 
-function Home() {
+const Home = () => {
   const { user } = useAuth();
   return (
     <>

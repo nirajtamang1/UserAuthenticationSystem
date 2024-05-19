@@ -7,30 +7,31 @@ import nodemailer from "nodemailer";
 export const signUpController = async (req, res) => {
   try {
     const { name, phone, email, password, confirmPassword } = req.body;
-    console.log(req.body);
-
     //validation
-    if (!name) {
-      return res.send({ message: "Name is required" });
+    if (!name || !phone || !email || !password || !confirmPassword) {
+      return res.json({ message: "Please fill all the fields" });
     }
-    if (!phone) {
-      return res.send({ message: "Phone number is required" });
+    const phoneRegex = /^\d+$/;
+    if (!phoneRegex.test(phone)) {
+      return res.json({ message: "Please enter a valid phone number." });
     }
-    if (!email) {
-      return res.send({ message: "Email is required" });
+
+    if (name.length < 2 || name.length > 50) {
+      return res.json({
+        message: "Name should contain more than 2 words and less than 50 words",
+      });
     }
-    if (!password) {
-      return res.send({ message: "Password is required" });
-    }
-    if (!confirmPassword) {
-      return res.send({ message: "Confirmed Password is required" });
+    if (password.length < 6) {
+      return res.json({
+        message: "Please enter a password with at least 6 characters.",
+      });
     }
     if (password != confirmPassword) {
-      return res.send({
+      return res.json({
         message: "Password and confirmed password must be same",
       });
     }
-    // // check user
+    // check user
     const existinguser = await userModel.findOne({ email });
     if (existinguser) {
       return res.status(200).send({
@@ -270,4 +271,4 @@ export const deleteUserProfileContorller = async (req, res) => {
       message: "Error while deleting User information",
     });
   }
-}
+};

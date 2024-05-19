@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Layout from "./Layout/Layout";
 import { toast } from "react-toastify";
 
-function Profile() {
+const Profile = () => {
   const { user, logout, deleteProfile } = useAuth();
   const navigate = useNavigate();
 

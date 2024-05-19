@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Layout from "./Layout/Layout";
 import { toast } from "react-toastify";
 
-function UpdateProfile() {
+const UpdateProfile = () => {
   const { user, updateProfile } = useAuth();
   const navigate = useNavigate();
 
@@ -23,9 +23,8 @@ function UpdateProfile() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      console.log(user);
       await updateProfile({ name, phone, email, password });
-      toast.success("Update user profile successfully");
+      toast.success("Profile updated Successfully");
       navigate("/profile");
     } catch (error) {
       toast.error("Profile not updated");
@@ -33,7 +32,7 @@ function UpdateProfile() {
   };
   return (
     <>
-      <Layout  title="User Authentication System - Update Profile">
+      <Layout title="User Authentication System - Update Profile">
         <div className="background">
           <div className="form-container">
             <h2 className="mb-3">Update Profile</h2>
@@ -101,6 +100,6 @@ function UpdateProfile() {
       </Layout>
     </>
   );
-}
+};
 
 export default UpdateProfile;

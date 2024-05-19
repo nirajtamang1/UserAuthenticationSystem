@@ -4,7 +4,7 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
-function ResetPassword() {
+const ResetPassword = () => {
   const [password, setPassword] = useState();
   const navigate = useNavigate();
   const { id, token } = useParams();
@@ -17,7 +17,7 @@ function ResetPassword() {
         `${process.env.REACT_APP_API_URL}/api/auth/reset_password/${id}/${token}`,
         { password }
       );
-    
+
       if (res.data.Status === "Successs") {
         toast.success("Password updated successfully!");
         navigate("/login");
@@ -28,7 +28,7 @@ function ResetPassword() {
     }
   };
   return (
-    <Layout  title="User Authentication System - Reset Password">
+    <Layout title="User Authentication System - Reset Password">
       <div className="background">
         <div className="form-container">
           <h2 className="mb-3">Reset Password</h2>
@@ -53,6 +53,6 @@ function ResetPassword() {
       </div>
     </Layout>
   );
-}
+};
 
 export default ResetPassword;
