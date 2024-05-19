@@ -69,10 +69,15 @@ Note: First open the backend URL after some second open frontend URL so that the
 
 **Backend Setup**
 1. Navigate to the backend directory
+   
 •	Using command: cd backend
-3. Install all the dependencies:
+
+2.  Install all the dependencies:
+   
 •	Using command: npm install
-4. Set the environment variable
+
+3. Set the environment variable
+   
 Create the “.env” file in the backend directory
 
 Add the following variables.
@@ -85,7 +90,8 @@ Add the following variables.
 
 •	FRONTEND_URL: your frontend URL
 
-6. Run the server
+4. Run the server
+   
 •	Using command: npm run dev
 
 Now your server will be running on the port in 8080 or whatever port you are given.
@@ -93,17 +99,23 @@ Now your server will be running on the port in 8080 or whatever port you are giv
 **Frontend Setup:**
 
 1. Navigate to frontend directory.
+   
 •	Using command: cd frontend
+
 2. Install all the dependencies
+   
 •	Using command: npm install
+
 3. Set the environment variable
+   
 Create the “.env” file in the frontend directory
 
 Add the following variables.
 
 •	REACT_APP_API_URL: your backend URL
 
-5. Run the React application
+4. Run the React application
+   
 •	Using command: npm start
 
 Now your react application is running on the “http://localhost:3000”
