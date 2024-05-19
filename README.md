@@ -8,19 +8,30 @@ Frontend(URL): https://user-authentication-system-4bxwqfpww-niraj-tamangs-projec
 Admin(id)
 
 •	email: waibaniraj208@gmail.com
+
 •	password: 12345678
 
 Note: First open the backend URL after some second open frontend URL so that the application will run smoothly.
 
+
 **Project Structure:** 
+
 **Backend project Structure**
+
 •	config: data base connection
+
 •	controller: all the logic for the routes
+
 •	helpers: logic for the hashing password and comparing password
+
 •	middleware: Token verification
+
 •	models: mongoose schemas and model
+
 •	routes: endpoints for the function
+
 •	server.js: Entry point for the backend server
+
 
 **Frontend project Structure**
 •	public: Static file such as index.html
