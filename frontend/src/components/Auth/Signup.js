@@ -39,7 +39,7 @@ function Signup() {
 
   return (
     <>
-      <Layout>
+      <Layout title="User Authentication System - Sign Up page">
         <div className="background">
           <div className="form-container">
             <h2 className="mb-3">Sign Up</h2>

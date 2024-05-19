@@ -193,13 +193,13 @@ export const forgetPasswordController = async (req, res) => {
         console.log({ Status: "Success", "Email sent: ": info.response });
       }
     });
-    res.status(200).send({
+    res.status(200).json({
       success: true,
       message: "Please check your mail for reset password link!",
     });
   } catch (error) {
     console.log(error);
-    res.status(500).send({
+    res.status(500).json({
       success: false,
       message: "Error while sending the email",
       error,
@@ -213,7 +213,7 @@ export const resetPasswordController = async (req, res) => {
 
   const oldUser = await userModel.findOne({ _id: id });
   if (!oldUser) {
-    return res.send({ status: "User doesnot Exists" });
+    return res.json({ status: "User doesnot Exists" });
   }
   const secret = process.env.JWT_SECRET + oldUser.password;
   try {
@@ -231,11 +231,11 @@ export const resetPasswordController = async (req, res) => {
           }
         );
 
-        return res.send({ Status: "Successs" });
+        return res.status(200).json({ Status: "Successs" });
       }
     });
   } catch (error) {
-    res.status(500).send({
+    res.status(500).json({
       status: false,
       message: "Not verified",
     });
@@ -246,16 +246,28 @@ export const allUserController = async (req, res) => {
   try {
     // console.log("Successfully");
     const user = await userModel.find({ role: 0 });
-    res.status(200).send({
+    res.status(200).json({
       success: true,
       message: "All User",
       user,
     });
   } catch (error) {
-    res.status(500).send({
+    res.status(500).json({
       success: false,
       message: "Error in Displaying all User Information",
       error,
     });
   }
 };
+
+export const deleteUserProfileContorller = async (req, res) => {
+  try {
+    await userModel.deleteOne({ _id: req.params.id });
+    res.status(201).json(userModel);
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Error while deleting User information",
+    });
+  }
+}

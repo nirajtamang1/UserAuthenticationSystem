@@ -20,8 +20,24 @@ function UserInfo() {
   useEffect(() => {
     getAllUsers();
   }, []);
+
+  const handleDelete = async (userId) => {
+    try {
+      const confirm = window.confirm("Are you sure to delete this account?");
+      if (confirm) {
+        await axios.delete(
+          `${process.env.REACT_APP_API_URL}/api/auth/deleteUserProfile/${userId}`
+        );
+        toast.success("User deleted successfully");
+        getAllUsers();
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Error while deleting user information");
+    }
+  };
   return (
-    <Layout>
+    <Layout title="User Authentication System - Users Profile">
       <div className="background">
         <div className="table-container">
           <h1 className="mb-3">Our User</h1>
@@ -44,7 +60,7 @@ function UserInfo() {
                     <td>
                       <button
                         className="btn btn-danger"
-                        // onClick={() => handleDelete(user._id)}
+                        onClick={() => handleDelete(user._id)}
                       >
                         Delete
                       </button>

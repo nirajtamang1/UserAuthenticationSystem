@@ -24,7 +24,7 @@ function ForgetPassword() {
     }
   };
   return (
-    <Layout>
+    <Layout  title="User Authentication System - Forget Password">
       <div className="background">
         <div className="form-container">
           <h2 className="mb-3">Forget Password</h2>

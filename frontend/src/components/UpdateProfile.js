@@ -33,7 +33,7 @@ function UpdateProfile() {
   };
   return (
     <>
-      <Layout>
+      <Layout  title="User Authentication System - Update Profile">
         <div className="background">
           <div className="form-container">
             <h2 className="mb-3">Update Profile</h2>

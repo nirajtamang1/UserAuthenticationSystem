@@ -25,7 +25,7 @@ function Profile() {
     navigate("/updateProfile");
   };
   return (
-    <Layout>
+    <Layout title="User Authentication System - Profile">
       <div className="background">
         <div className="form-container">
           <h1 className="mb-3">Profile</h1>

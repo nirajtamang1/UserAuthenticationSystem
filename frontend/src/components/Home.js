@@ -7,7 +7,7 @@ function Home() {
   const { user } = useAuth();
   return (
     <>
-      <Layout>
+      <Layout title="User Authentication System - Welcome page">
         <div className="background">
           <h1 className="mb-3">Welcome to our User Authentication System</h1>
           {user ? (

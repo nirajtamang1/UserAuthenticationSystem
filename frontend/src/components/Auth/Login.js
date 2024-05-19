@@ -23,7 +23,7 @@ function Login() {
 
   return (
     <>
-      <Layout>
+      <Layout  title="User Authentication System - Login">
         <div className="background">
           <div className="form-container">
             <h2>Login</h2>

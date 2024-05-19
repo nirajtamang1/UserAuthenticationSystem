@@ -2,6 +2,7 @@ import express from "express";
 import {
   allUserController,
   deleteProfileController,
+  deleteUserProfileContorller,
   forgetPasswordController,
   getProfileController,
   loginController,
@@ -22,5 +23,6 @@ router.put("/profile", authMiddleware, updateProfileController);
 router.delete("/profile", authMiddleware, deleteProfileController);
 
 router.get("/userProfiles", allUserController);
+router.delete("/deleteUserProfile/:id", deleteUserProfileContorller);
 
 export default router;

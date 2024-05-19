@@ -28,7 +28,7 @@ function ResetPassword() {
     }
   };
   return (
-    <Layout>
+    <Layout  title="User Authentication System - Reset Password">
       <div className="background">
         <div className="form-container">
           <h2 className="mb-3">Reset Password</h2>
