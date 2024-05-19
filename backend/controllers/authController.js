@@ -1,6 +1,7 @@
 import userModel from "../models/userModel.js";
 import { hashPassword, comparePassword } from "../helpers/authHelper.js";
 import JWT from "jsonwebtoken";
+import nodemailer from "nodemailer";
 
 //Sign Up User
 export const signUpController = async (req, res) => {
@@ -139,5 +140,94 @@ export const deleteProfileController = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({ error: error.message });
+  }
+};
+
+export const forgetPasswordController = async (req, res) => {
+  const { email } = req.body;
+  try {
+    const oldUser = await userModel.findOne({ email });
+    if (!oldUser) {
+      return res.status(200).json({ error: "User not found!" });
+    }
+    const secret = process.env.JWT_SECRET + oldUser.password;
+    const token = JWT.sign({ id: oldUser._id, email: oldUser.email }, secret, {
+      expiresIn: "5m",
+    });
+    const link = `${process.env.FRONTEND_URL}/reset_password/${oldUser._id}/${token}`;
+    var transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "waibanitaj222@gmail.com",
+        pass: "qjmv xkpb kuhi ribg",
+      },
+    });
+
+    var mailOptions = {
+      from: "Niraj Tamang <waibanitaj222@gmail.com>",
+      to: oldUser.email,
+      subject: "Password Reset",
+      html: `
+        <p>Hello ${oldUser.name},</p>
+        <p>You requested to reset your password. Click the link below to reset it:</p>
+        <a href="${link}">${link}</a>
+        <p>This email link is only valid for 5 minutes</p>
+        <p>If you didn't request a password reset, please ignore this email.</p>
+        `,
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log({ Status: "Success", "Email sent: ": info.response });
+      }
+    });
+    res.status(200).send({
+      success: true,
+      message: "Email Send Successfully",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while sending the email",
+      error,
+    });
+  }
+};
+
+export const resetPasswordController = async (req, res) => {
+  const { id, token } = req.params;
+  const { password } = req.body;
+
+  const oldUser = await userModel.findOne({ _id: id });
+  if (!oldUser) {
+    return res.send({ status: "User doesnot Exists" });
+  }
+  const secret = process.env.JWT_SECRET + oldUser.password;
+  try {
+    JWT.verify(token, secret, async (err) => {
+      if (err) {
+        return res.json({ Status: "Error with token" });
+      } else {
+        const hashedPassword = await hashPassword(password);
+        await userModel.updateOne(
+          { _id: id },
+          {
+            $set: {
+              password: hashedPassword,
+            },
+          }
+        );
+
+        return res.send({ Status: "Successs" });
+      }
+    });
+  } catch (error) {
+    res.status(500).send({
+      status: false,
+      message: "Not verified",
+    });
   }
 };

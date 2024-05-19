@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
-import Layout from "./Layout/Layout";
+import Layout from "../Layout/Layout";
 
 function Signup() {
   const [name, setName] = useState("");

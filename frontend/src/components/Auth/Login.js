@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/authProvider";
+import { useAuth } from "../../context/authProvider";
 import toast from "react-hot-toast";
-import Layout from "./Layout/Layout";
+import Layout from "../Layout/Layout";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -49,11 +49,16 @@ function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              <button type="submit" className=" button mb-2">
+              <button type="submit" className=" button mb-4">
                 Login
               </button>
-              <div className="mt-3">
-                <Link to="/signup">Sign Up</Link>
+              <div className="d-md-flex justify-content-center">
+                <div className="mb-4">
+                  <Link to="/signup">Sign Up</Link>
+                </div>
+                <div>
+                  <Link to="/forgetPassword">Forget Password</Link>
+                </div>
               </div>
             </form>
           </div>
