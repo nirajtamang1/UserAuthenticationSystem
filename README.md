@@ -74,6 +74,7 @@ Note: First open the backend URL after some second open frontend URL so that the
 •	Using command: npm install
 4. Set the environment variable
 Create the “.env” file in the backend directory
+
 Add the following variables.
 
 •	PORT : 8080
@@ -86,6 +87,7 @@ Add the following variables.
 
 6. Run the server
 •	Using command: npm run dev
+
 Now your server will be running on the port in 8080 or whatever port you are given.
  
 **Frontend Setup:**
