@@ -2,6 +2,7 @@ import React from "react";
 import { useAuth } from "../context/authProvider";
 import { useNavigate } from "react-router-dom";
 import Layout from "./Layout/Layout";
+import { toast } from "react-toastify";
 
 function Profile() {
   const { user, logout, deleteProfile } = useAuth();
@@ -9,12 +10,14 @@ function Profile() {
 
   const handleLogout = () => {
     logout();
+    toast.success("Logout successfully");
     navigate("/");
   };
   const handleDelete = () => {
-    const conform = window.confirm("Are you sure to delete your account");
-    if (conform) {
+    const confirm = window.confirm("Are you sure to delete your account?");
+    if (confirm) {
       deleteProfile();
+      toast.success("Delete Profile successfully");
       navigate("/");
     }
   };

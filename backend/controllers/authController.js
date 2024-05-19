@@ -6,14 +6,15 @@ import nodemailer from "nodemailer";
 //Sign Up User
 export const signUpController = async (req, res) => {
   try {
-    const { name, phone, email, password } = req.body;
+    const { name, phone, email, password, confirmPassword } = req.body;
+    console.log(req.body);
 
     //validation
     if (!name) {
       return res.send({ message: "Name is required" });
     }
     if (!phone) {
-      return res.send({ message: "Phone is required" });
+      return res.send({ message: "Phone number is required" });
     }
     if (!email) {
       return res.send({ message: "Email is required" });
@@ -21,7 +22,14 @@ export const signUpController = async (req, res) => {
     if (!password) {
       return res.send({ message: "Password is required" });
     }
-
+    if (!confirmPassword) {
+      return res.send({ message: "Confirmed Password is required" });
+    }
+    if (password != confirmPassword) {
+      return res.send({
+        message: "Password and confirmed password must be same",
+      });
+    }
     // // check user
     const existinguser = await userModel.findOne({ email });
     if (existinguser) {
@@ -126,7 +134,7 @@ export const updateProfileController = async (req, res) => {
       updatedUser,
     });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ message: "User Profile in not update" });
   }
 };
 
@@ -145,10 +153,12 @@ export const deleteProfileController = async (req, res) => {
 
 export const forgetPasswordController = async (req, res) => {
   const { email } = req.body;
+
   try {
     const oldUser = await userModel.findOne({ email });
+    console.log(oldUser);
     if (!oldUser) {
-      return res.status(200).json({ error: "User not found!" });
+      return res.status(200).json({ message: "User not found!" });
     }
     const secret = process.env.JWT_SECRET + oldUser.password;
     const token = JWT.sign({ id: oldUser._id, email: oldUser.email }, secret, {
@@ -185,7 +195,7 @@ export const forgetPasswordController = async (req, res) => {
     });
     res.status(200).send({
       success: true,
-      message: "Email Send Successfully",
+      message: "Please check your mail for reset password link!",
     });
   } catch (error) {
     console.log(error);

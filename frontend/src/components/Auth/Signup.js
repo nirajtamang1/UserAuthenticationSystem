@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import toast from "react-hot-toast";
 import Layout from "../Layout/Layout";
+import { toast } from "react-toastify";
 
 function Signup() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -21,6 +22,7 @@ function Signup() {
           phone,
           email,
           password,
+          confirmPassword,
         }
       );
 
@@ -90,6 +92,18 @@ function Signup() {
                   }}
                   className="form-control"
                   id="exampleInputPassword1"
+                  placeholder="Enter your password"
+                />
+              </div>
+              <div className="mb-3">
+                <input
+                  type="password"
+                  value={confirmPassword}
+                  onChange={(e) => {
+                    setConfirmPassword(e.target.value);
+                  }}
+                  className="form-control"
+                  id="exampleInputPassword2"
                   placeholder="Enter your password"
                 />
               </div>

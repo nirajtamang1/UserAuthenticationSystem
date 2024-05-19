@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useAuth } from "../context/authProvider";
 import { useNavigate } from "react-router-dom";
 import Layout from "./Layout/Layout";
+import { toast } from "react-toastify";
 
 function UpdateProfile() {
   const { user, updateProfile } = useAuth();
@@ -22,10 +23,12 @@ function UpdateProfile() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      console.log(user);
       await updateProfile({ name, phone, email, password });
+      toast.success("Update user profile successfully");
       navigate("/profile");
     } catch (error) {
-      console.log(error);
+      toast.error("Profile not updated");
     }
   };
   return (

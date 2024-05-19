@@ -60,7 +60,6 @@ function AuthProvider({ children }) {
       );
 
       setUser(res?.data?.updatedUser);
-      console.log("Profile updated successfully", res.data.user);
     } catch (error) {
       console.log(error);
     }

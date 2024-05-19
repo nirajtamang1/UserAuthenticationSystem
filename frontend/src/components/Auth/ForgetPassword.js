@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Layout from "../Layout/Layout";
 import axios from "axios";
-import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function ForgetPassword() {
   const [email, setEmail] = useState();
@@ -11,16 +11,16 @@ function ForgetPassword() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post(
+      const res = await axios.post(
         `${process.env.REACT_APP_API_URL}/api/auth/forgetPassword`,
         {
           email,
         }
       );
-      toast.success("Please check your mail for reset password link!");
+      toast.success(res.data.message);
       navigate("/login");
     } catch (error) {
-      toast.error("Error while resetting password");
+      toast.error("Error while reseting password");
     }
   };
   return (

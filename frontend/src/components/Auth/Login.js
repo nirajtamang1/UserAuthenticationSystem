@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authProvider";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import Layout from "../Layout/Layout";
 
 function Login() {
@@ -13,11 +13,11 @@ function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const data = await login(email, password);
-      console.log(data);
+      await login(email, password);
+      toast.success("Login Successfully");
       navigate("/profile");
     } catch (error) {
-      toast.error("Invalid Information");
+      toast.error("Invalid Email or Password");
     }
   };
 

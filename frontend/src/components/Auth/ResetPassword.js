@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Layout from "../Layout/Layout";
 import axios from "axios";
-import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function ResetPassword() {
   const [password, setPassword] = useState();
@@ -17,9 +17,8 @@ function ResetPassword() {
         `${process.env.REACT_APP_API_URL}/api/auth/reset_password/${id}/${token}`,
         { password }
       );
-      console.log(res);
+    
       if (res.data.Status === "Successs") {
-        console.log("Successfully updated password");
         toast.success("Password updated successfully!");
         navigate("/login");
       }
