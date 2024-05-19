@@ -34,37 +34,57 @@ Note: First open the backend URL after some second open frontend URL so that the
 
 
 **Frontend project Structure**
+
 •	public: Static file such as index.html
+
 •	src: source code for the react application.
+
 •	components: reusable components 
+
 •	Admin: Displaying the user information for the admin only
+
 •	Auth:  Authenticated the user information
+
 •	Layout: Link for the navigation
+
 •	Pages: Components for the different pages
+
 •	context: creating the context API so that the information present in context API can access all the files.
+
 •	App.js: Main page for the react routing 
+
 •	Index.css: Designing the webpages.
+
 •	Index.js : Entry point for the react application.
+
 
 **Running the project Locally**
 
 **Prerequisites:**
+
 •	Node.js Installed
+
 •	MongoDB installed and running
+
 
 **Backend Setup**
 1. Navigate to the backend directory
 •	Using command: cd backend
-2. Install all the dependencies:
+3. Install all the dependencies:
 •	Using command: npm install
-3. Set the environment variable
+4. Set the environment variable
 Create the “.env” file in the backend directory
 Add the following variables.
+
 •	PORT : 8080
+
 •	MONGO_URL : your MongoDB URL
+
 •	JWT_SECRECT: create secret key for eg: akdsnlflkadfnkl2849!#$$
+
 •	FRONTEND_URL: your frontend URL
-4. Run the server
+
+6. Run the server
 •	Using command: npm run dev
 Now your server will be running on the port in 8080 or whatever port you are given.
  
@@ -76,8 +96,12 @@ Now your server will be running on the port in 8080 or whatever port you are giv
 •	Using command: npm install
 3. Set the environment variable
 Create the “.env” file in the frontend directory
+
 Add the following variables.
+
 •	REACT_APP_API_URL: your backend URL
-4. Run the React application
+
+5. Run the React application
 •	Using command: npm start
+
 Now your react application is running on the “http://localhost:3000”
