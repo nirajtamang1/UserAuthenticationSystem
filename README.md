@@ -95,6 +95,7 @@ Add the following variables.
 •	Using command: npm run dev
 
 Now your server will be running on the port in 8080 or whatever port you are given.
+
  
 **Frontend Setup:**
 
