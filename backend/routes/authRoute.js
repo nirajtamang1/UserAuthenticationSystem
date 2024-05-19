@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  allUserController,
   deleteProfileController,
   forgetPasswordController,
   getProfileController,
@@ -19,5 +20,7 @@ router.post("/reset_password/:id/:token", resetPasswordController);
 router.get("/profile", authMiddleware, getProfileController);
 router.put("/profile", authMiddleware, updateProfileController);
 router.delete("/profile", authMiddleware, deleteProfileController);
+
+router.get("/userProfiles", allUserController);
 
 export default router;

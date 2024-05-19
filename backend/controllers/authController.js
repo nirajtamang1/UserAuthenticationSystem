@@ -241,3 +241,21 @@ export const resetPasswordController = async (req, res) => {
     });
   }
 };
+
+export const allUserController = async (req, res) => {
+  try {
+    // console.log("Successfully");
+    const user = await userModel.find({ role: 0 });
+    res.status(200).send({
+      success: true,
+      message: "All User",
+      user,
+    });
+  } catch (error) {
+    res.status(500).send({
+      success: false,
+      message: "Error in Displaying all User Information",
+      error,
+    });
+  }
+};

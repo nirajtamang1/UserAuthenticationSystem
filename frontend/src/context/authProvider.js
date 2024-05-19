@@ -13,7 +13,7 @@ function AuthProvider({ children }) {
         try {
           const res = await axios.get(
             `${process.env.REACT_APP_API_URL}/api/auth/profile`,
-            { headers: { Authorization: `Bearer ${token}` } }
+            { headers: { Authorization: `${token}` } }
           );
           setUser(res?.data?.user);
         } catch (error) {
@@ -38,7 +38,7 @@ function AuthProvider({ children }) {
       const userProfile = await axios.get(
         `${process.env.REACT_APP_API_URL}/api/auth/profile`,
         {
-          headers: { Authorization: `Bearer ${res.data.token}` },
+          headers: { Authorization: `${res.data.token}` },
         }
       );
 
@@ -56,7 +56,7 @@ function AuthProvider({ children }) {
       const res = await axios.put(
         `${process.env.REACT_APP_API_URL}/api/auth/profile`,
         userData,
-        { headers: { Authorization: `Bearer ${token}` } }
+        { headers: { Authorization: `${token}` } }
       );
 
       setUser(res?.data?.updatedUser);
@@ -69,11 +69,10 @@ function AuthProvider({ children }) {
     try {
       const token = localStorage.getItem("token");
       await axios.delete(`${process.env.REACT_APP_API_URL}/api/auth/profile`, {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `${token}` },
       });
       localStorage.removeItem("token");
       setUser(null);
-      console.log("Delete Profile successfully");
     } catch (error) {
       console.log(error);
     }
