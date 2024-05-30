@@ -1,15 +1,15 @@
-**User Authentication System**
+**Cycle Booking System**
 **Live URL:**
 
 Backend(URL): https://userauthenticationsystem-1xf9.onrender.com
 
-Frontend(URL): https://user-authentication-system-4bxwqfpww-niraj-tamangs-projects.vercel.app
+Frontend(URL): https://cycle-for-everyone.vercel.app/
 
 Admin(id)
 
-•	email: waibaniraj208@gmail.com
+•	email: admin1
 
-•	password: 12345678
+•	password: admin1
 
 Note: First open the backend URL after backend URL open completely open frontend URL so that the application will run smoothly.
 
